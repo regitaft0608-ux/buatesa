@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Buat Masss — Semangat Sembuh 💖</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #fff6fb;
+      --card: #ffffff;
+      --accent: #ff6fa3;
+      --accent-2:#a06cd5;
+      --ink: #3b3b3b;
+      --soft: #ffd7e5;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial; color:var(--ink);
+      background: radial-gradient(1200px 600px at 80% -10%, #ffe9f3 10%, transparent 60%),
+                  radial-gradient(700px 500px at 10% 110%, #efe7ff 10%, transparent 60%),
+                  var(--bg);
+      display:grid; place-items:center; overflow-x:hidden;
+    }
+
+    /* Floating hearts in the background */
+    .hearts{position:fixed; inset:0; pointer-events:none; overflow:hidden}
+    .hearts span{
+      position:absolute; bottom:-10vh; font-size:22px; opacity:.8; filter:blur(.2px);
+      animation: floatUp 9s linear infinite;
+    }
+    @keyframes floatUp{ to { transform:translateY(-120vh) rotate(30deg); opacity:.1 } }
+
+    .wrap{
+      width:min(720px, 92vw);
+      background: linear-gradient(180deg, #ffffffc9, #ffffff);
+      border:1px solid #f6e7f0;
+      box-shadow: 0 8px 30px rgba(255, 111, 163, .15);
+      border-radius:28px;
+      padding:28px;
+      position:relative;
+    }
+
+    .ribbon{
+      position:absolute; inset:-10px -10px auto auto; transform:rotate(6deg);
+      background:linear-gradient(45deg, var(--accent), var(--accent-2)); color:white;
+      padding:8px 16px; border-radius:12px; font-weight:700; box-shadow:0 6px 14px rgba(0,0,0,.08)
+    }
+
+    header{
+      display:flex; align-items:center; gap:16px; margin-bottom:8px
+    }
+    .pill{
+      padding:6px 12px; border-radius:999px; background:var(--soft); color:#b84c78; font-weight:600; font-size:.9rem;
+      border:1px solid #ffd0e1; box-shadow:0 2px 6px rgba(255, 111, 163,.15)
+    }
+
+    h1{
+      margin:8px 0 0 0; font-size:clamp(26px, 4.5vw, 38px); line-height:1.2;
+      background:linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      text-shadow:0 2px 10px rgba(255,111,163,.18)
+    }
+    .sub{margin:6px 0 18px 0; color:#6b6b6b}
+
+    .card{
+      display:grid; gap:18px; grid-template-columns: 1fr; margin-top:6px
+    }
+
+    .quote{
+      background: #fff7fb; border:1px dashed #ffc2d9; padding:16px; border-radius:20px; font-size:1.02rem
+    }
+
+    .heart-line{ display:flex; gap:6px; font-size:22px; align-items:center; justify-content:center; margin:6px 0 }
+
+    /* Reveal message control (no JS) */
+    input#reveal{ display:none }
+    .actions{ display:flex; gap:12px; flex-wrap:wrap }
+    .btn{
+      appearance:none; border:none; cursor:pointer; text-decoration:none; text-align:center; user-select:none;
+      padding:12px 18px; border-radius:999px; font-weight:700; letter-spacing:.3px; transition:.2s transform, .2s box-shadow;
+      box-shadow: 0 6px 14px rgba(255, 111, 163, .22);
+      background:linear-gradient(90deg, var(--accent), var(--accent-2)); color:white;
+    }
+    .btn:hover{ transform:translateY(-2px); box-shadow:0 10px 22px rgba(255, 111, 163, .26)}
+
+    .hidden{
+      max-height:0; overflow:hidden; transition:max-height .6s ease, opacity .6s ease; border-radius:18px; opacity:0;
+    }
+    #reveal:checked ~ .hidden{ max-height:600px; opacity:1 }
+
+    .message{
+      padding:16px; background:#fef1f7; border:1px solid #ffd6e6; border-radius:18px; line-height:1.7
+    }
+
+    footer{ margin-top:10px; font-size:.92rem; color:#7a7a7a; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap }
+    .sig{ font-weight:700; color:#b5527a }
+
+    /* Small decorative sticker */
+    .sticker{ 
+      position:absolute; right:14px; bottom:14px; opacity:.9; 
+      filter:drop-shadow(0 4px 8px rgba(0,0,0,.08));
+      animation: floaty 3s ease-in-out infinite alternate;
+    }
+    .sticker .bubble{
+      background: #fff; border:1px solid #f2d9e4; padding:10px 12px; border-radius:14px; font-size:.92rem
+    }
+
+    @keyframes floaty {
+      from { transform: translateY(0px) rotate(-2deg); }
+      to { transform: translateY(-6px) rotate(2deg); }
+    }
+
+    /* Responsive */
+    @media (min-width:720px){ .card{ grid-template-columns: .9fr 1.1fr } }
+
+    @media (max-width:480px){
+      .sticker .bubble{ font-size:.75rem; padding:6px 8px }
+    }
+  </style>
+</head>
+<body>
+  <div class="hearts" aria-hidden="true"></div>
+
+  <main class="wrap" role="main" aria-label="Spesial Buat Mas">
+    <div class="ribbon">Cepat Sembuh Mas Sayangg!</div>
+
+    <header>
+      <div class="pill">Untuk: <strong>Esaa Sayangg</strong></div>
+    </header>
+    <h1>Ada sedikit pesan dari hati adek buat mas 💕</h1>
+
+    <section class="card">
+      <div>
+        <div class="quote">" Dari jauh adek nitip doa dan pesan sederhana tapi penuh makna dari adek untuk mas 💌🤍.
+            Dibaca pelan pelan ya heheheh"</div>
+        <div class="quote">" Oiya btw sama disetel ya musiknya mbul yang bawah itu biar tambah ngena wkwk"</div>
+        <div class="heart-line">❤️ ✨ 💗 ✨ 💖</div>
+
+        <!-- Toggle tanpa JS -->
+        <input type="checkbox" id="reveal">
+        <div class="actions">
+          <label class="btn" for="reveal">Klik untuk baca pesan dari adekk</label>
+        </div>
+
+        <div class="hidden">
+          <div class="message">
+            Hai mas 💕  
+            <br><br>
+            Maaf ya kalau sakitnya mungkin bikin mas capek. Tapi adek yakin mas itu kuat banget, lebih kuat dari yang mas kira.  
+            Adek selalu bangga sama mas yang berusaha tegar di depan semuanya, padahal mas juga butuh istirahat🥺  
+            <br><br>
+            Jangan lupa minum obatnya tepat waktu, makan yang teratur, minum air putih cukup, terus tidur yang nyenyak ya.  
+            Adek nggak bisa selalu ada di samping mas sekarang, tapi doa dan sayang adek selalu nyampe kok.  
+            <br><br>
+            ✨ Peluk jauh dan doa terbaik buat mas. ✨  
+            Tenang aja sebentar lagi pasti sembuh, soalnya mas punya satu “obat spesial”: ada adek yang nggak pernah lelah sayang dan doain mas💞  
+            <br><br>
+            Mas ngga sendirian, ada adek di sini nemenin mas selalu🤍
+          </div>
+        </div>
+      </div>
+
+      <aside>
+        <img src="foto/love.jpg" alt="Ilustrasi lembut: buku dan bunga" style="width:100%; height:320px; object-fit:cover; border-radius:22px; border:1px solid #f3e1ea; box-shadow:0 10px 24px rgba(160,108,213,.18)"/>
+      </aside>
+    </section>
+
+    <!-- Musik Player -->
+    <div class="music-player" style="margin-top:20px; text-align:center">
+      <audio id="bg-music" loop>
+        <source src="musik/lovely.mp3" type="audio/mpeg">
+        Browsermu tidak mendukung pemutar musik.
+      </audio>
+      <button id="music-btn" class="btn">▶️ Play Musik</button>
+    </div>
+
+    <footer>
+      <div>Hari ini, <span class="sig">semangatnya Esa</span> naik +100 ✨</div>
+      <div class="sig">Dari: Adek yang imuetzzzz</div>
+    </footer>
+
+    <div class="sticker">
+      <div class="bubble">🍵 Istirahat, minum air putih yg cukup, jangan skip obat ya, dan satu lagi ttep sayang adek yaaa lopyuu😘💕💕💕.</div>
+    </div>
+  </main>
+
+  <!-- Confetti library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    const heartsContainer = document.querySelector('.hearts');
+
+    function createHeart() {
+      const heart = document.createElement('span');
+      heart.textContent = ["💗","💖","💘","💝","💞"][Math.floor(Math.random()*5)];
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (16 + Math.random()*24) + "px";
+      heart.style.animationDuration = (5 + Math.random()*6) + "s";
+      heartsContainer.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 12000);
+    }
+
+    // Intensitas lebih sedikit kalau layar kecil
+    let interval = window.innerWidth < 480 ? 1500 : 800; 
+    setInterval(createHeart, interval);
+
+    // Confetti pas klik tombol pesan
+    document.querySelector("label[for='reveal']").addEventListener("click", () => {
+      confetti({
+        particleCount: 80,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+    });
+
+    // Music player kontrol
+    const music = document.getElementById("bg-music");
+    const musicBtn = document.getElementById("music-btn");
+
+    musicBtn.addEventListener("click", () => {
+      if (music.paused) {
+        music.play();
+        musicBtn.textContent = "⏸ Pause Musik";
+      } else {
+        music.pause();
+        musicBtn.textContent = "▶️ Play Musik";
+      }
+    });
+  </script>
+</body>
+</html>
